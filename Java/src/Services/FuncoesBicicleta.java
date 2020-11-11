@@ -19,11 +19,10 @@ public class FuncoesBicicleta {
     Scanner ler = new Scanner(System.in);
     ConexaoBicicleta connBike = new ConexaoBicicleta();
 
-    public Bicicleta adicionarBicicleta( Bicicleta bike) {
-        
+    public void adicionarBicicleta(Bicicleta bike) {
         System.out.println("\nEntre com:");
 
-        System.out.printf("HashID da bicicleta: ");
+        System.out.printf("QRCODE da bicicleta: ");
         String qrcode = ler.nextLine();
         bike.setQrcode(qrcode);
 
@@ -34,11 +33,18 @@ public class FuncoesBicicleta {
         String km = "0";
         bike.setKm(km);
 
-        Boolean aludaga = false;
-        bike.setAlugada(aludaga);
+        bike.setAlugada(false);
 
-        
-        return bike;
+        connBike.insertBicicleta(bike);
+
+    }
+
+    public void retornaBicicleta(Bicicleta bike) {
+        System.out.println("ID: " + bike.getId());
+        System.out.println("QRCODE: " + bike.getQrcode());
+        System.out.println("KM's Rodados: " + bike.getKm());
+        System.out.println("Totem Atual: " + bike.getTotem());
+        System.out.println("Está alugada? " + bike.getAlugada());
     }
 
     public Boolean bicicletaAlugada(String qrcodeBike) {
@@ -47,13 +53,11 @@ public class FuncoesBicicleta {
         if (connBike.bicicletaAlugada(qrcodeBike)) {
             alugada = true;
             System.out.println("Bike está alugada!!");
-        }
-        else{
+        } else {
             System.out.println("Bike não está alugada!!");
-            
+
         }
         return alugada;
     }
 
-   
 }

@@ -44,8 +44,10 @@ public class Main {
 
                 System.out.println("\n\n[1] Cadastrar Usuário");
                 funcoes.adicionarUsuario(usuario);
+                
                 System.out.println("\n\n[1] Usuario Cadastrado:");
                 funcoes.retornaUsuario(usuario);
+                
             } else if (opcao == 2) {
 
                 System.out.println("\n[2] Logar no sistema");
@@ -56,33 +58,42 @@ public class Main {
                     int opcaoUsuario = 9;
 
                     while (opcaoUsuario != 0) {
+                        
                         System.out.println("\n\nEsolha uma opção: ");
                         System.out.println("[0] Sair do sistema");
                         System.out.println("[3] Alugar Bicicleta");
                         System.out.println("[4] Devolver Bicicleta");
+                       
                         opcaoUsuario = Integer.parseInt(ler.nextLine());
+                        
                         if (opcaoUsuario == 0) {
+                            
                             System.out.println("OUT");
+                            
                         } else if (opcaoUsuario == 3) {
 
                             System.out.println("Entre com o QR CODE presente na bicicleta: ");
                             String novoQrCode = ler.nextLine();
-
                             funcoesBike.bicicletaAlugada(novoQrCode);
 
                             System.out.println("Alugel feito com sucesso, será debitado assim que devolver a bicicleta");
+                            
                         } else if (opcaoUsuario == 4) {
+                            
                             System.out.println("Obrigado por devolver a bike!");
+                            
                         } else if (opcaoUsuario == 8) {
+                            
                             System.out.println("Cadastrar a bike!");
                             funcoesBike.adicionarBicicleta(bike);
-                            System.out.println("\n\n[1] Usuario Cadastrado:");
+                            
+                            System.out.println("\n\n[1] Bicicleta Cadastrada:");
                             funcoesBike.retornaBicicleta(bike);
+                            
                         } else {
                             System.out.println("\nOPÇÃO INVÁLIDA!!");
                         }
                     }
-
                 }
             } else {
                 System.out.println("\nOPÇÃO INVÁLIDA!!");

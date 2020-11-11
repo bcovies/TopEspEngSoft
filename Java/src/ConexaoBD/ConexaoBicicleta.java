@@ -23,11 +23,11 @@ public class ConexaoBicicleta {
     private String jdbcUsername = "admin";
     private String jdbcPassword = "admin";
 
-    private static final String INSERT_BIKE_SQL = "INSERT into bicicleta (qrcode,km,totem,alugada) VALUES ('101','0','anil',false);;";
+    private static final String INSERT_BIKE_SQL = "INSERT INTO bicicleta (qrcode,km,totem,alugada) VALUES (?,?,?,?);";
     private static final String SELECT_BIKE_SQL = "SELECT id FROM bicicleta WHERE qrcode = ?;";
 
     Bicicleta bike = new Bicicleta();
-    FuncoesBicicleta funcoesBike = new FuncoesBicicleta();
+    
 
     protected Connection getConnection() {
 
@@ -45,6 +45,24 @@ public class ConexaoBicicleta {
         return connection;
     }
 
+    public Bicicleta insertBicicleta(Bicicleta bike) {
+
+        try (Connection connection = getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_BIKE_SQL)) {
+
+            preparedStatement.setString(1, bike.getQrcode());
+            preparedStatement.setString(2, bike.getKm());
+            preparedStatement.setString(3, bike.getTotem());
+            preparedStatement.setBoolean(4, bike.getAlugada());
+
+            preparedStatement.executeUpdate();
+            System.out.println("\nINSERTBIKE:\n" + preparedStatement);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return bike;
+    }
+/*
     public Bicicleta alugarBicicleta(Bicicleta bike) {
 
         try (Connection connection = getConnection();
@@ -66,12 +84,7 @@ public class ConexaoBicicleta {
         }
 
         return bike;
-    }
-
-    public Bicicleta cadastrarBicicleta(Bicicleta bike) {
-
-        return bike;
-    }
+    }*/
 
     public Boolean bicicletaAlugada(String qrcodeBike) {
         boolean alugado = false;
