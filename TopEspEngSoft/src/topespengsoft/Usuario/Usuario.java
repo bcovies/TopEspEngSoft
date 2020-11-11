@@ -15,11 +15,25 @@ public class Usuario {
     private String nome;
     private String sobrenome;
     private String CPF;
+    private String email;
+    private String senha;
     private String endereco;
     private String nascimento;
     private String cartao;
 
     public Usuario() {
+    }
+
+    public Usuario(int id, String nome, String sobrenome, String CPF, String email, String senha, String endereco, String nascimento, String cartao) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.CPF = CPF;
+        this.email = email;
+        this.senha = senha;
+        this.endereco = endereco;
+        this.nascimento = nascimento;
+        this.cartao = cartao;
     }
 
     public int getId() {
@@ -54,6 +68,22 @@ public class Usuario {
         this.CPF = CPF;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public String getEndereco() {
         return endereco;
     }
@@ -75,16 +105,6 @@ public class Usuario {
     }
 
     public void setCartao(String cartao) {
-        this.cartao = cartao;
-    }
-
-    public Usuario(int id, String nome, String sobrenome, String CPF, String endereco, String nascimento, String cartao) {
-        this.id = id;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.CPF = CPF;
-        this.endereco = endereco;
-        this.nascimento = nascimento;
         this.cartao = cartao;
     }
 

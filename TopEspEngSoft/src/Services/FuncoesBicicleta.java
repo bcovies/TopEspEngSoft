@@ -24,8 +24,8 @@ public class FuncoesBicicleta {
         System.out.printf("HashID da bicicleta: ");
         String hashId = ler.nextLine();
         bike.setHashId(hashId);
-        System.out.printf("Totem no qual a bicicleta estará alocada: ");
 
+        System.out.printf("Totem no qual a bicicleta estará alocada: ");
         String totemId = ler.nextLine();
         bike.setTotemId(totemId);
 
@@ -37,14 +37,14 @@ public class FuncoesBicicleta {
 
     }
 
-    public Boolean bicicletaAlugada(Bicicleta bike) {
-        Boolean alugada;
+    public Boolean bicicletaAlugada(String bikeHashId) {
+        Boolean alugada = false;
+        System.out.println("Entre com o HASH ID da bike: ");
+        String hashId = ler.nextLine();
+        bike.setHashId(hashId);
 
         if (bike.getAlugada()) {
             alugada = true;
-
-        } else {
-            alugada = false;
         }
 
         return alugada;
@@ -53,9 +53,9 @@ public class FuncoesBicicleta {
     public void alugarBicicleta(Boolean estaAlugada) {
 
         if (estaAlugada) {
-
-        } else {
             System.out.println("Bike já está alugada, tente outra...");
+        } else {
+            System.out.println();
         }
     }
 }

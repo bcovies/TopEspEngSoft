@@ -5,6 +5,7 @@
  */
 package Services;
 
+import ConexaoBD.ConexaoUsuario;
 import java.util.Scanner;
 import topespengsoft.Usuario.Usuario;
 
@@ -15,6 +16,7 @@ import topespengsoft.Usuario.Usuario;
 public class FuncoesUsuario {
 
     Usuario usuario = new Usuario();
+    ConexaoUsuario connUsuario = new ConexaoUsuario();
     Scanner ler = new Scanner(System.in);
 
     public void adicionarUsuario(Usuario usuario) {
@@ -30,6 +32,14 @@ public class FuncoesUsuario {
         String CPF = ler.nextLine();
         usuario.setCPF(CPF);
 
+        System.out.printf("Entre com o seu Email: ");
+        String email = ler.nextLine();
+        usuario.setEmail(email);
+
+        System.out.printf("Entre com o sua Senha: ");
+        String senha = ler.nextLine();
+        usuario.setSenha(senha);
+
         System.out.printf("Entre com o seu Endereço: ");
         String endereco = ler.nextLine();
         usuario.setEndereco(endereco);
@@ -41,12 +51,17 @@ public class FuncoesUsuario {
         System.out.printf("Entre com o seu Cartão: ");
         String cartao = ler.nextLine();
         usuario.setCartao(cartao);
+
+        connUsuario.insertUser(usuario);
+
     }
 
     public void retornaUsuario(Usuario usuario) {
         System.out.println("Nome: " + usuario.getNome());
         System.out.println("Sobrenome: " + usuario.getSobrenome());
         System.out.println("CPF: " + usuario.getCPF());
+        System.out.println("Email: " + usuario.getEmail());
+        System.out.println("Senha: " + usuario.getSenha());
         System.out.println("Endereço: " + usuario.getEndereco());
         System.out.println("Nascimento: " + usuario.getNascimento());
         System.out.println("Cartão: " + usuario.getCartao());
