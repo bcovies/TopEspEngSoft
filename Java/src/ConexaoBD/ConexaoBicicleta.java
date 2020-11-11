@@ -18,4 +18,13 @@ public class ConexaoBicicleta {
 
     private static final String INSERT_BIKE_SQL = "INSERT INTO bicicleta () VALUES ();";
 
+    
+    
+    public void alugarBicicleta(String hashId){
+        
+        
+        
+    }
+    
+    
 }

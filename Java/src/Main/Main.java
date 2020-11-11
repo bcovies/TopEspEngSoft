@@ -5,6 +5,7 @@
  */
 package Main;
 
+import Services.FuncoesBicicleta;
 import Services.FuncoesUsuario;
 import java.util.Scanner;
 import topespengsoft.Usuario.Usuario;
@@ -22,6 +23,7 @@ public class Main {
         // TODO code application logic here
         Scanner ler = new Scanner(System.in);
         FuncoesUsuario funcoes = new FuncoesUsuario();
+        FuncoesBicicleta funcoesBike = new FuncoesBicicleta();
         Usuario usuario = new Usuario();
         System.out.println("Bem-vindo ao nosso sistema!");
         int opcao = 9;
@@ -41,6 +43,27 @@ public class Main {
             if (opcao == 2) {
                 System.out.println("[2] Logar no sistema");
                 funcoes.logarUsuario(usuario);
+                if (funcoes.logarUsuario(usuario)) {
+
+                    int opcaoUsuario = 9;
+                    while (opcaoUsuario != 0) {
+                        System.out.println("\n\n[3] Alugar Bicicleta");
+                        System.out.println("\n\n[4] Devolver Bicicleta");
+                        opcaoUsuario = ler.nextInt();
+
+                        if (opcaoUsuario == 3) {
+                            System.out.println("Entre com o HASH ID presente na bicicleta: ");
+                            String hashId = ler.nextLine();
+                            boolean EstaAlugada = funcoesBike.bicicletaAlugada(hashId);
+                            funcoesBike.alugarBicicleta(EstaAlugada);
+                            System.out.println("Alugel feito com sucesso, será debitado assim que devolver a bicicleta");
+                        }
+                        if (opcaoUsuario == 4) {
+                            System.out.println("Obrigado por devolver a bike!");
+                        }
+                    }
+
+                }
             }
         }
 

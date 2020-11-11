@@ -39,9 +39,8 @@ public class FuncoesBicicleta {
 
     public Boolean bicicletaAlugada(String bikeHashId) {
         Boolean alugada = false;
-        System.out.println("Entre com o HASH ID da bike: ");
-        String hashId = ler.nextLine();
-        bike.setHashId(hashId);
+       
+        bike.setHashId(bikeHashId);
 
         if (bike.getAlugada()) {
             alugada = true;
