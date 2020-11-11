@@ -5,7 +5,8 @@
  */
 package Main;
 
-import Services.Funcoes;
+import Services.FuncoesUsuario;
+import java.util.Scanner;
 import topespengsoft.Usuario.Usuario;
 
 /**
@@ -19,15 +20,15 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+
         System.out.println("Bem-vindo ao nosso sistema!");
-        
-        Funcoes funcoes = new Funcoes();
+
+        FuncoesUsuario funcoes = new FuncoesUsuario();
         Usuario usuario = new Usuario();
-        
-        usuario.
-        funcoes.adicionarUsuario(nome, sobrenome, CPF, endereco, nascimento, cartao);
-        
+
+        funcoes.adicionarUsuario(usuario);
+        funcoes.retornaUsuario(usuario);
+
     }
-    
+
 }

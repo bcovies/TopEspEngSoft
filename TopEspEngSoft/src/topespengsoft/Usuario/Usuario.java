@@ -5,12 +5,12 @@
  */
 package topespengsoft.Usuario;
 
-
 /**
  *
  * @author bcovies
  */
 public class Usuario {
+
     private int id;
     private String nome;
     private String sobrenome;
@@ -87,8 +87,5 @@ public class Usuario {
         this.nascimento = nascimento;
         this.cartao = cartao;
     }
-    
-    
-    
-    
+
 }
