@@ -38,7 +38,7 @@ public class ConexaoUsuario {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("\nUSUARIODAO:\nIniciada a conexão com o banco de dados:\t" + connection);
+        System.out.println("\nCONEXAO:\nIniciada a conexão com o banco de dados:\t" + connection);
         return connection;
     }
 
@@ -56,7 +56,7 @@ public class ConexaoUsuario {
             preparedStatement.setString(7, usuario.getNascimento());
             preparedStatement.setString(8, usuario.getCartao());
             preparedStatement.executeUpdate();
-            System.out.println("\nUSUARIODAO:\n" + preparedStatement);
+            System.out.println("\nINSERTUSUARIO:\n" + preparedStatement);
         } catch (Exception e) {
             e.getMessage();
         }
@@ -79,7 +79,7 @@ public class ConexaoUsuario {
                 autenticado = true;
             }
             preparedStatement.executeUpdate();
-            System.out.println("\nUSUARIODAO:\n" + preparedStatement);
+            System.out.println("\nLOGARUSUARIO:\n" + preparedStatement);
         } catch (Exception e) {
             e.getMessage();
         }

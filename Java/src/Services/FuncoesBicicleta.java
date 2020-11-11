@@ -5,6 +5,7 @@
  */
 package Services;
 
+import ConexaoBD.ConexaoBicicleta;
 import java.util.Scanner;
 import topespengsoft.Usuario.Bicicleta;
 
@@ -16,36 +17,38 @@ public class FuncoesBicicleta {
 
     Bicicleta bike = new Bicicleta();
     Scanner ler = new Scanner(System.in);
+    ConexaoBicicleta connBike = new ConexaoBicicleta();
 
     public void adicionarBicicleta() {
         System.out.println("Alugar bike:");
         System.out.println("\nEntre com:");
 
         System.out.printf("HashID da bicicleta: ");
-        String hashId = ler.nextLine();
-        bike.setHashId(hashId);
+        String qrcode = ler.nextLine();
+        bike.setQrcode(qrcode);
 
         System.out.printf("Totem no qual a bicicleta estará alocada: ");
-        String totemId = ler.nextLine();
-        bike.setTotemId(totemId);
+        String totem = ler.nextLine();
+        bike.setTotem(totem);
 
-        String kmTotal = "0";
-        bike.setKmTotal(kmTotal);
+        String km = "0";
+        bike.setKm(km);
 
         Boolean aludaga = false;
         bike.setAlugada(aludaga);
 
     }
 
-    public Boolean bicicletaAlugada(String bikeHashId) {
+    public Boolean bicicletaAlugada(String qrcodeBike) {
         Boolean alugada = false;
-       
-        bike.setHashId(bikeHashId);
 
-        if (bike.getAlugada()) {
+        if (connBike.bicicletaAlugada(qrcodeBike)) {
             alugada = true;
+            System.out.println("Bike está alugada!!");
         }
-
+        else{
+            System.out.println("Bike não está alugada!!");
+        }
         return alugada;
     }
 

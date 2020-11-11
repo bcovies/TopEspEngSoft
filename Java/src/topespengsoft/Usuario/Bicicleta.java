@@ -12,19 +12,19 @@ package topespengsoft.Usuario;
 public class Bicicleta {
 
     private int id;
-    private String hashId;
-    private String kmTotal;
-    private String totemId;
+    private String qrcode;
+    private String km;
+    private String totem;
     private Boolean alugada;
 
     public Bicicleta() {
     }
 
-    public Bicicleta(int id, String hashId, String kmTotal, String totemId, Boolean alugada) {
+    public Bicicleta(int id, String qrcode, String km, String totem, Boolean alugada) {
         this.id = id;
-        this.hashId = hashId;
-        this.kmTotal = kmTotal;
-        this.totemId = totemId;
+        this.qrcode = qrcode;
+        this.km = km;
+        this.totem = totem;
         this.alugada = alugada;
     }
 
@@ -36,28 +36,28 @@ public class Bicicleta {
         this.id = id;
     }
 
-    public String getHashId() {
-        return hashId;
+    public String getQrcode() {
+        return qrcode;
     }
 
-    public void setHashId(String hashId) {
-        this.hashId = hashId;
+    public void setQrcode(String qrcode) {
+        this.qrcode = qrcode;
     }
 
-    public String getKmTotal() {
-        return kmTotal;
+    public String getKm() {
+        return km;
     }
 
-    public void setKmTotal(String kmTotal) {
-        this.kmTotal = kmTotal;
+    public void setKm(String km) {
+        this.km = km;
     }
 
-    public String getTotemId() {
-        return totemId;
+    public String getTotem() {
+        return totem;
     }
 
-    public void setTotemId(String totemId) {
-        this.totemId = totemId;
+    public void setTotem(String totem) {
+        this.totem = totem;
     }
 
     public Boolean getAlugada() {
@@ -67,4 +67,5 @@ public class Bicicleta {
     public void setAlugada(Boolean alugada) {
         this.alugada = alugada;
     }
+
 }
