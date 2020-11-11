@@ -8,6 +8,7 @@ package Main;
 import Services.FuncoesBicicleta;
 import Services.FuncoesUsuario;
 import java.util.Scanner;
+import topespengsoft.Usuario.Bicicleta;
 import topespengsoft.Usuario.Usuario;
 
 /**
@@ -15,15 +16,19 @@ import topespengsoft.Usuario.Usuario;
  * @author bcovies
  */
 public class Main {
-     /**
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner ler = new Scanner(System.in);
+        Usuario usuario = new Usuario();
+        Bicicleta bike = new Bicicleta();
+
         FuncoesUsuario funcoes = new FuncoesUsuario();
         FuncoesBicicleta funcoesBike = new FuncoesBicicleta();
-        Usuario usuario = new Usuario();
+
         System.out.println("\n\nBem-vindo ao nosso sistema!");
         int opcao = 9;
         while (opcao != 0) {
@@ -32,7 +37,7 @@ public class Main {
             System.out.println("[0] Sair do sistema");
             System.out.println("[1] Cadastrar usuario");
             System.out.println("[2] Logar no sistema");
-            opcao =  Integer.parseInt(ler.nextLine());
+            opcao = Integer.parseInt(ler.nextLine());
             if (opcao == 0) {
                 System.out.println("OUT");
             } else if (opcao == 1) {
@@ -55,19 +60,24 @@ public class Main {
                         System.out.println("[0] Sair do sistema");
                         System.out.println("[3] Alugar Bicicleta");
                         System.out.println("[4] Devolver Bicicleta");
-                        opcaoUsuario =  Integer.parseInt(ler.nextLine());
+                        opcaoUsuario = Integer.parseInt(ler.nextLine());
                         if (opcaoUsuario == 0) {
                             System.out.println("OUT");
                         } else if (opcaoUsuario == 3) {
 
-                            System.out.println("Entre com o HASH ID presente na bicicleta: ");
+                            System.out.println("Entre com o QR CODE presente na bicicleta: ");
                             String novoQrCode = ler.nextLine();
-                            
-                            boolean EstaAlugada = funcoesBike.bicicletaAlugada(novoQrCode);
-                            funcoesBike.alugarBicicleta(EstaAlugada);
+
+                            funcoesBike.bicicletaAlugada(novoQrCode);
+
                             System.out.println("Alugel feito com sucesso, será debitado assim que devolver a bicicleta");
                         } else if (opcaoUsuario == 4) {
                             System.out.println("Obrigado por devolver a bike!");
+                        } else if (opcaoUsuario == 8) {
+                            System.out.println("Cadastrar a bike!");
+                            funcoesBike.adicionarBicicleta(bike);
+                            System.out.println("\n\n[1] Usuario Cadastrado:");
+                            funcoesBike.retornaBicicleta(bike);
                         } else {
                             System.out.println("\nOPÇÃO INVÁLIDA!!");
                         }

@@ -19,8 +19,8 @@ public class FuncoesBicicleta {
     Scanner ler = new Scanner(System.in);
     ConexaoBicicleta connBike = new ConexaoBicicleta();
 
-    public void adicionarBicicleta() {
-        System.out.println("Alugar bike:");
+    public Bicicleta adicionarBicicleta( Bicicleta bike) {
+        
         System.out.println("\nEntre com:");
 
         System.out.printf("HashID da bicicleta: ");
@@ -37,6 +37,8 @@ public class FuncoesBicicleta {
         Boolean aludaga = false;
         bike.setAlugada(aludaga);
 
+        
+        return bike;
     }
 
     public Boolean bicicletaAlugada(String qrcodeBike) {
@@ -48,16 +50,10 @@ public class FuncoesBicicleta {
         }
         else{
             System.out.println("Bike não está alugada!!");
+            
         }
         return alugada;
     }
 
-    public void alugarBicicleta(Boolean estaAlugada) {
-
-        if (estaAlugada) {
-            System.out.println("Bike já está alugada, tente outra...");
-        } else {
-            System.out.println();
-        }
-    }
+   
 }
