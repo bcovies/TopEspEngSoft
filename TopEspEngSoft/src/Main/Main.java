@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package topespengsoft;
+package Main;
+
+import Services.Funcoes;
+import topespengsoft.Usuario.Usuario;
 
 /**
  *
  * @author bcovies
  */
-public class TopEspEngSoft {
+public class Main {
 
     /**
      * @param args the command line arguments
@@ -18,6 +21,13 @@ public class TopEspEngSoft {
         // TODO code application logic here
         
         System.out.println("Bem-vindo ao nosso sistema!");
+        
+        Funcoes funcoes = new Funcoes();
+        Usuario usuario = new Usuario();
+        
+        usuario.
+        funcoes.adicionarUsuario(nome, sobrenome, CPF, endereco, nascimento, cartao);
+        
     }
     
 }
