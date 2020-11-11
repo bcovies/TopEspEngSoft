@@ -8,8 +8,8 @@ package Main;
 import Services.FuncoesBicicleta;
 import Services.FuncoesUsuario;
 import java.util.Scanner;
-import topespengsoft.Usuario.Bicicleta;
-import topespengsoft.Usuario.Usuario;
+import Models.Bicicleta;
+import Models.Usuario;
 
 /**
  *

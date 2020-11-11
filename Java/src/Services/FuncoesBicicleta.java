@@ -5,9 +5,9 @@
  */
 package Services;
 
-import ConexaoBD.ConexaoBicicleta;
+import DAO.ConexaoBicicleta;
 import java.util.Scanner;
-import topespengsoft.Usuario.Bicicleta;
+import Models.Bicicleta;
 
 /**
  *

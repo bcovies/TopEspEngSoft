@@ -5,9 +5,9 @@
  */
 package Services;
 
-import ConexaoBD.ConexaoUsuario;
+import DAO.ConexaoUsuario;
 import java.util.Scanner;
-import topespengsoft.Usuario.Usuario;
+import Models.Usuario;
 
 /**
  *
