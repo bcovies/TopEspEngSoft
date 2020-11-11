@@ -20,14 +20,29 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-
-        System.out.println("Bem-vindo ao nosso sistema!");
-
+        Scanner ler = new Scanner(System.in);
         FuncoesUsuario funcoes = new FuncoesUsuario();
         Usuario usuario = new Usuario();
+        System.out.println("Bem-vindo ao nosso sistema!");
+        int opcao = 9;
+        while (opcao != 0) {
 
-        funcoes.adicionarUsuario(usuario);
-        funcoes.retornaUsuario(usuario);
+            System.out.println("\n\nEsolha uma opção: ");
+            System.out.println("[0] Sair do sistema");
+            System.out.println("[1] Cadastrar usuario");
+            System.out.println("[2] Logar no sistema");
+            opcao = ler.nextInt();
+            if (opcao == 1) {
+                System.out.println("\n\n[1] Cadastrar Usuário");
+                funcoes.adicionarUsuario(usuario);
+                System.out.println("\n\n[1] Usuario Cadastrado:");
+                funcoes.retornaUsuario(usuario);
+            }
+            if (opcao == 2) {
+                System.out.println("[2] Logar no sistema");
+                funcoes.logarUsuario(usuario);
+            }
+        }
 
     }
 

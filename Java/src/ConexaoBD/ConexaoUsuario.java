@@ -8,6 +8,7 @@ package ConexaoBD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import topespengsoft.Usuario.Usuario;
 
 /**
@@ -22,6 +23,8 @@ public class ConexaoUsuario {
     private String jdbcPassword = "admin";
 
     private static final String INSERT_USER_SQL = "INSERT INTO usuario (nome,sobrenome,cpf,email,senha,endereco,nascimento,cartao) VALUES (?,?,?,?,?,?,?,?);";
+
+    private static final String SELEC_USER_EMAIL_PASS_SQL = "SELECT nome,sobrenome,cpf,email,senha,endereco,nascimento,cartao FROM usuario WHERE email = ? AND senha = ?;";
 
     protected Connection getConnection() {
 
@@ -43,7 +46,7 @@ public class ConexaoUsuario {
 
         try (Connection connection = getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
-            
+
             preparedStatement.setString(1, usuario.getNome());
             preparedStatement.setString(2, usuario.getSobrenome());
             preparedStatement.setString(3, usuario.getCPF());
@@ -57,5 +60,29 @@ public class ConexaoUsuario {
         } catch (Exception e) {
             e.getMessage();
         }
+    }
+
+    public Boolean LogarUser(String email, String senha) {
+        boolean autenticado = false;
+
+        try (Connection connection = getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(SELEC_USER_EMAIL_PASS_SQL)) {
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, senha);
+
+            ResultSet rs;
+            rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                String login = rs.getString("email");
+                String pass = rs.getString("senha");
+                autenticado = true;
+            }
+            preparedStatement.executeUpdate();
+            System.out.println("\nUSUARIODAO:\n" + preparedStatement);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return autenticado;
     }
 }

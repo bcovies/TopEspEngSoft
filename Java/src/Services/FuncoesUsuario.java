@@ -66,4 +66,22 @@ public class FuncoesUsuario {
         System.out.println("Nascimento: " + usuario.getNascimento());
         System.out.println("Cartão: " + usuario.getCartao());
     }
+
+    public boolean logarUsuario(Usuario usuario) {
+        boolean autenticado = false;
+        System.out.printf("Entre com o seu Email: ");
+        String email = ler.nextLine();
+        usuario.setEmail(email);
+
+        System.out.printf("Entre com o sua Senha: ");
+        String senha = ler.nextLine();
+        usuario.setSenha(senha);
+        if (connUsuario.LogarUser(email, senha)) {
+            autenticado = true;
+            System.out.println("Usuário logado com sucesso!");
+        } else {
+            System.out.println("Email ou senha INCORRETOS!!");
+        }
+        return autenticado;
+    }
 }
