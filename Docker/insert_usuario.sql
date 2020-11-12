@@ -7,5 +7,6 @@ CREATE TABLE "usuario" (
   "senha" character varying(16) NOT NULL,
   "endereco" character varying(70),
   "nascimento" character varying(8) NOT NULL,
-  "cartao" character varying(16) NOT NULL
+  "cartao" character varying(16) NOT NULL,
+  PRIMARY KEY (id)
 );
