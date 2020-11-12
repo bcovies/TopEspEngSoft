@@ -44,7 +44,7 @@ public class ConexaoBicicleta {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("\nCONEXAO:\nIniciada a conexão com o banco de dados:\t" + connection);
+//        System.out.println("\nCONEXAO:\nIniciada a conexão com o banco de dados:\t" + connection);
         return connection;
     }
 
@@ -59,7 +59,7 @@ public class ConexaoBicicleta {
             preparedStatement.setBoolean(4, bike.getAlugada());
 
             preparedStatement.executeUpdate();
-            System.out.println("\nINSERTBIKE:\n" + preparedStatement);
+//            System.out.println("\nINSERTBIKE:\n" + preparedStatement);
             preparedStatement.close();
             connection.close();
         } catch (Exception e) {
@@ -83,7 +83,7 @@ public class ConexaoBicicleta {
                 bike.setTotem(rs.getString("totem"));
                 bike.setAlugada(rs.getBoolean("alugada"));
             }
-            System.out.println("\nBike CONN:\n" + preparedStatement);
+//            System.out.println("\nBike CONN:\n" + preparedStatement);
             rs.close();
             preparedStatement.close();
             connection.close();
@@ -109,7 +109,7 @@ public class ConexaoBicicleta {
             resultadoBikeStatus.close();
             procuraBikeStatus.close();
             connection.close();
-            System.out.println("\nBike CONN:\n" + procuraBikeStatus);
+//            System.out.println("\nBike CONN:\n" + procuraBikeStatus);
         } catch (Exception e) {
             e.getMessage();
         }
@@ -129,7 +129,7 @@ public class ConexaoBicicleta {
                 preparedStatement.close();
                 connection.close();
                 rs.close();
-                System.out.println("\nBike ALUGAR TRUE CONN:\n" + preparedStatement);
+//                System.out.println("\nBike ALUGAR TRUE CONN:\n" + preparedStatement);
             } catch (Exception e) {
                 e.getMessage();
             }
@@ -144,7 +144,7 @@ public class ConexaoBicicleta {
                 preparedStatement.close();
                 connection.close();
                 rs.close();
-                System.out.println("\nBike ALUGAR FALSE ONN:\n" + preparedStatement);
+//                System.out.println("\nBike ALUGAR FALSE ONN:\n" + preparedStatement);
             } catch (Exception e) {
                 e.getMessage();
             }
