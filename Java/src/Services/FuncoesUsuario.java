@@ -56,19 +56,8 @@ public class FuncoesUsuario {
 
     }
 
-    public void retornaUsuario(Usuario usuario) {
-        System.out.println("Nome: " + usuario.getNome());
-        System.out.println("Sobrenome: " + usuario.getSobrenome());
-        System.out.println("CPF: " + usuario.getCPF());
-        System.out.println("Email: " + usuario.getEmail());
-        System.out.println("Senha: " + usuario.getSenha());
-        System.out.println("Endereço: " + usuario.getEndereco());
-        System.out.println("Nascimento: " + usuario.getNascimento());
-        System.out.println("Cartão: " + usuario.getCartao());
-    }
+    public Usuario retornaUsuario() {
 
-    public boolean logarUsuario(Usuario usuario) {
-        boolean autenticado = false;
         System.out.printf("Entre com o seu Email: ");
         String email = ler.nextLine();
         usuario.setEmail(email);
@@ -76,13 +65,8 @@ public class FuncoesUsuario {
         System.out.printf("Entre com o sua Senha: ");
         String senha = ler.nextLine();
         usuario.setSenha(senha);
-        if (connUsuario.LogarUser(email, senha)) {
-            autenticado = true;
-            System.out.println("Usuário logado com sucesso!");
-        } else {
-            System.out.println("Email ou senha INCORRETOS!!");
-        }
-        return autenticado;
+
+        usuario = connUsuario.returnUser(email, senha);
+        return usuario;
     }
-    
 }

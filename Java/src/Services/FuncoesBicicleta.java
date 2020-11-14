@@ -15,11 +15,11 @@ import Models.Bicicleta;
  */
 public class FuncoesBicicleta {
 
-    Bicicleta bike = new Bicicleta();
     Scanner ler = new Scanner(System.in);
     ConexaoBicicleta connBike = new ConexaoBicicleta();
 
-    public void adicionarBicicleta(Bicicleta bike) {
+    public void adicionarBicicleta() {
+        Bicicleta bike = new Bicicleta();
         System.out.println("\nEntre com:");
 
         System.out.printf("QRCODE da bicicleta: ");
@@ -39,8 +39,7 @@ public class FuncoesBicicleta {
 
     }
 
-    public void retornaBicicleta(String Qrcode) {
-
+    public Bicicleta retornaBicicleta(String Qrcode) {
         Bicicleta bike = new Bicicleta();
         bike.setQrcode(Qrcode);
 
@@ -51,33 +50,37 @@ public class FuncoesBicicleta {
         System.out.println("KM's Rodados: " + bike.getKm());
         System.out.println("Totem Atual: " + bike.getTotem());
         System.out.println("Está alugada? " + bike.getAlugada());
+
+        return bike;
     }
 
-    public Boolean bicicletaAlugada(String Qrcode) {
-        Boolean alugada = connBike.verificaBicicletaAlugada(Qrcode);
+    public Boolean bicicletaAlugada(int id) {
+        Boolean alugada = connBike.verificaBicicletaAlugada(id);
 
         if (alugada) {
             System.out.println("Bike está alugada!!");
+            System.out.println("Não foi possível alugar-la!!");
         } else {
             System.out.println("Bike não está alugada!!");
             System.out.println("Alugando a bicicleta...");
-            connBike.alugarBicicleta(Qrcode, true);
+            connBike.alugarBicicleta(id, true);
         }
         return alugada;
     }
 
-    public Boolean devolverBikeAlugada(String Qrcode) {
-       Boolean alugada = connBike.verificaBicicletaAlugada(Qrcode);
+    public Boolean devolverBikeAlugada(int id) {
+        Boolean alugada = connBike.verificaBicicletaAlugada(id);
 
         if (alugada) {
-           
             System.out.println("Confirmado, Bike está alugada!!");
             System.out.println("Estamos devolvendo ela....");
-            connBike.alugarBicicleta(Qrcode, false);
+            float valor = (float) (Math.floor(Math.random() * 10) + 1);
+            connBike.devolverBicicleta(id, false, valor);
+            System.out.println("Obrigado por usar!");
+
         } else {
             System.out.println("Bike não está alugada!!");
         }
         return alugada;
     }
-
 }

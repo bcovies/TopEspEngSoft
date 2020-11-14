@@ -25,10 +25,14 @@ public class ConexaoBicicleta {
     private String jdbcPassword = "admin";
 
     private static final String INSERT_BIKE_SQL = "INSERT INTO bicicleta (qrcode,km,totem,alugada) VALUES (?,?,?,?);";
-    private static final String SELECT_BIKE_SQL = "SELECT alugada FROM bicicleta WHERE qrcode = ?;";
+
+    private static final String SELECT_BIKE_SQL = "SELECT alugada FROM bicicleta WHERE id = ?;";
+
     private static final String SELECT_ALL_BIKE_SQL = "SELECT id, qrcode, km, totem, alugada FROM bicicleta WHERE qrcode = ?;";
 
-    private static final String UPDATE_STATUS_BIKE_SQL = "UPDATE bicicleta SET alugada = ?  WHERE qrcode = ?;";
+    private static final String UPDATE_STATUS_BIKE_SQL = "UPDATE bicicleta SET alugada = ?  WHERE id = ?;";
+
+    private static final String UPDATE_DEVOLVER_BIKE_SQL = "UPDATE bicicleta SET alugada = ?, km = ?  WHERE id = ?;";
 
     Bicicleta bike = new Bicicleta();
 
@@ -94,13 +98,13 @@ public class ConexaoBicicleta {
         return bike;
     }
 
-    public Boolean verificaBicicletaAlugada(String QRcode) {
+    public Boolean verificaBicicletaAlugada(int id) {
 
         Boolean status = false;
         try (Connection connection = getConnection();
-                PreparedStatement procuraBikeStatus = connection.prepareStatement(SELECT_ALL_BIKE_SQL)) {
+                PreparedStatement procuraBikeStatus = connection.prepareStatement(SELECT_BIKE_SQL)) {
 
-            procuraBikeStatus.setString(1, QRcode);
+            procuraBikeStatus.setInt(1, id);
             ResultSet resultadoBikeStatus = procuraBikeStatus.executeQuery();
 
             if (resultadoBikeStatus.next()) {
@@ -116,14 +120,14 @@ public class ConexaoBicicleta {
         return status;
     }
 
-    public void alugarBicicleta(String QRcode, boolean yORn) {
+    public void alugarBicicleta(int id, boolean yORn) {
 
         if (yORn) {
             try (Connection connection = getConnection();
                     PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_STATUS_BIKE_SQL)) {
 
                 preparedStatement.setBoolean(1, true);
-                preparedStatement.setString(2, QRcode);
+                preparedStatement.setInt(2, id);
                 ResultSet rs = preparedStatement.executeQuery();
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
@@ -138,7 +142,33 @@ public class ConexaoBicicleta {
                     PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_STATUS_BIKE_SQL)) {
 
                 preparedStatement.setBoolean(1, false);
-                preparedStatement.setString(2, QRcode);
+                preparedStatement.setInt(2, id);
+                ResultSet rs = preparedStatement.executeQuery();
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
+                rs.close();
+//                System.out.println("\nBike ALUGAR FALSE ONN:\n" + preparedStatement);
+            } catch (Exception e) {
+                e.getMessage();
+            }
+        }
+
+    }
+
+    public void devolverBicicleta(int id, boolean yORn, float valor) {
+        if (yORn) {
+            System.out.println("opção errada!");
+        } else {
+            try (Connection connection = getConnection();
+                    PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DEVOLVER_BIKE_SQL)) {
+
+                preparedStatement.setBoolean(1, false);
+
+                String s = Float.toString(valor);
+                preparedStatement.setString(2, s);
+                preparedStatement.setInt(3, id);
+
                 ResultSet rs = preparedStatement.executeQuery();
                 preparedStatement.executeUpdate();
                 preparedStatement.close();

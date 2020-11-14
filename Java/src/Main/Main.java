@@ -22,7 +22,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
         Scanner ler = new Scanner(System.in);
+
         Usuario usuario = new Usuario();
         Bicicleta bike = new Bicicleta();
 
@@ -38,74 +40,83 @@ public class Main {
             System.out.println("[1] Cadastrar usuario");
             System.out.println("[2] Logar no sistema");
             opcao = Integer.parseInt(ler.nextLine());
-            if (opcao == 0) {
-                System.out.println("OUT");
-            } else if (opcao == 1) {
+            switch (opcao) {
+                case 0:
+                    System.out.println("Obrigado por usar o Sistema!!");
 
-                System.out.println("\n\n[1] Cadastrar Usuário");
-                funcoes.adicionarUsuario(usuario);
+                    break;
+                case 1:
+                    System.out.println("\n\n[1] Cadastrar Usuário");
+                    funcoes.adicionarUsuario(usuario);
+                    break;
+                case 2:
+                    System.out.println("\n[2] Logar no sistema");
+                    usuario = funcoes.retornaUsuario();
 
-                System.out.println("\n\n[1] Usuario Cadastrado:");
-                funcoes.retornaUsuario(usuario);
+                    if (usuario.getId() != 0) {
 
-            } else if (opcao == 2) {
+                        int opcaoUsuario = 9;
 
-                System.out.println("\n[2] Logar no sistema");
-                boolean auntenticouLogin = funcoes.logarUsuario(usuario);
+                        while (opcaoUsuario != 0) {
 
-                if (auntenticouLogin) {
+                            System.out.println("\n\nEsolha uma opção: ");
+                            System.out.println("[0] Sair do sistema");
+                            System.out.println("[5] Consultar Bicicleta");
 
-                    int opcaoUsuario = 9;
+                            opcaoUsuario = Integer.parseInt(ler.nextLine());
 
-                    while (opcaoUsuario != 0) {
+                            switch (opcaoUsuario) {
+                                case 0:
+                                    usuario.setId(0);
+                                    System.out.println("Deslogado com sucesso!");
+                                    break;
+                                case 1:
+                                    System.out.println("Cadastrar a bike!");
+                                    funcoesBike.adicionarBicicleta();
+                                    System.out.println("\n\n[1] Bicicleta Cadastrada:");
+                                    break;
 
-                        System.out.println("\n\nEsolha uma opção: ");
-                        System.out.println("[0] Sair do sistema");
-                        System.out.println("[3] Alugar Bicicleta");
-                        System.out.println("[4] Devolver Bicicleta");
-                        System.out.println("[5] Consultar Bicicleta");
+                                case 5:
+                                    System.out.println("[5] Consultar Bicicleta:");
+                                    System.out.println("Entre com QR code:");
 
-                        opcaoUsuario = Integer.parseInt(ler.nextLine());
+                                    String consultaQRcode = ler.nextLine();
 
-                        if (opcaoUsuario == 0) {
+                                    bike = funcoesBike.retornaBicicleta(consultaQRcode);
 
-                            System.out.println("OUT");
+                                    if (bike.getId() != 0) {
+                                        int opcaoBike = 9;
 
-                        } else if (opcaoUsuario == 3) {
+                                        while (opcaoBike != 0) {
 
-                            System.out.println("Entre com o QR CODE presente na bicicleta: ");
-                            String novoQrCode = ler.nextLine();
-                            funcoesBike.bicicletaAlugada(novoQrCode);
+                                            System.out.println("\n\nEsolha uma opção: ");
+                                            System.out.println("[0] Sair do sistema");
+                                            System.out.println("[3] Alugar Bicicleta");
+                                            System.out.println("[4] Devolver Bicicleta");
 
-                            System.out.println("Alugel feito com sucesso, será debitado assim que devolver a bicicleta");
-
-                        } else if (opcaoUsuario == 4) {
-                            System.out.println("Entre com o QR CODE presente na bicicleta: ");
-                            String novoQrCode = ler.nextLine();
-                            funcoesBike.devolverBikeAlugada(novoQrCode);
-                            System.out.println("Obrigado por devolver a bike!");
-
-                        } else if (opcaoUsuario == 5) {
-
-                            System.out.println("[5] Consultar Bicicleta:");
-                            System.out.println("Entre com QR code:");
-                            String consultaQRcode = ler.nextLine();
-                            funcoesBike.retornaBicicleta(consultaQRcode);
-
-                        } else if (opcaoUsuario == 8) {
-
-                            System.out.println("Cadastrar a bike!");
-                            funcoesBike.adicionarBicicleta(bike);
-
-                            System.out.println("\n\n[1] Bicicleta Cadastrada:");
-
-                        } else {
-                            System.out.println("\nOPÇÃO INVÁLIDA!!");
+                                            opcaoBike = Integer.parseInt(ler.nextLine());
+                                            switch (opcaoBike) {
+                                                case 0: {
+                                                    System.out.println("Saindo da bicicleta!!");
+                                                    bike.setId(0);
+                                                    break;
+                                                }
+                                                case 3: {
+                                                    funcoesBike.bicicletaAlugada(bike.getId());
+                                                    break;
+                                                }
+                                                case 4: {
+                                                    funcoesBike.devolverBikeAlugada(bike.getId());
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        System.out.println("Bike não encontrada!");
+                                    }
+                            }
                         }
                     }
-                }
-            } else {
-                System.out.println("\nOPÇÃO INVÁLIDA!!");
             }
         }
 
