@@ -17,11 +17,7 @@ import Models.Usuario;
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
 
         Scanner ler = new Scanner(System.in);
 
@@ -112,13 +108,14 @@ public class Main {
                                             }
                                         }
                                     } else {
-                                        System.out.println("Bike n√£o encontrada!");
+                                        System.out.println("Bike n„o encontrada!");
                                     }
                             }
                         }
                     }
             }
         }
+        ler.close();
 
     }
 

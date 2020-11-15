@@ -67,5 +67,9 @@ public class Bicicleta {
     public void setAlugada(Boolean alugada) {
         this.alugada = alugada;
     }
+    
+    public boolean totemDigitadoCorreto(String totem) {
+    	return this.totem.equalsIgnoreCase(totem);
+    }
 
 }
